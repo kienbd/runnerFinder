@@ -12,3 +12,11 @@
 <ul>
   <li *ngFor="#name of nameListService.get()">{{name}}</li>
 </ul>
+
+
+<p><a class="btn btn-primary btn-lg" role="button" (click)="fetchCountries()">Get Countries</a></p>
+
+<p>
+  {{runnerListService.getCountries()}}
+</p>
+

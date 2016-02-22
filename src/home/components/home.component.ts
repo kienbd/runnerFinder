@@ -1,7 +1,9 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 
+import { Http } from 'angular2/http';
 import {NameListService} from '../../shared/services/name-list.service';
+import {RunnerListService} from '../../shared/services/runner-list.service';
 
 @Component({
   selector: 'sd-home',
@@ -10,9 +12,10 @@ import {NameListService} from '../../shared/services/name-list.service';
   styleUrls: ['./home.component.css'],
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
+
 export class HomeComponent {
   newName: string;
-  constructor(public nameListService: NameListService) {}
+  constructor(public nameListService: NameListService,public runnerListService: RunnerListService,public http: Http) {}
 
   /*
    * @param newname  any text as input.
@@ -23,4 +26,9 @@ export class HomeComponent {
     this.newName = '';
     return false;
   }
+
+  fetchCountries(): boolean {
+    this.runnerListService.fetchCountries(this.http);
+  }
+
 }
