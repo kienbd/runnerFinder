@@ -35,6 +35,8 @@ export class RunnerListService {
   }
 
   fetchRunners(country: string,force= false): void {
+    if(country.length === 0)
+      return;
     if(force||typeof this.runners[country] === 'undefined') {
       console.log('http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/' + country);
       this._callApi('http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/' + country)
@@ -44,23 +46,21 @@ export class RunnerListService {
           error => this.response = error.text()
         );
     }
-    console.log(this.runners);
-    console.log(this.runners[country]);
+    //console.log(this.runners);
+    //console.log(this.runners[country]);
   }
 
   getRunners(country,keyword): RunnerInfo[] {
-    console.log(keyword);
     keyword = keyword.toLowerCase();
     var set_runners = this.runners[country]||[];
     if(keyword.length === 0) {
       return set_runners;
     } else {
-      var tungcua = set_runners.map((runner) => {
+      return set_runners.map((runner) => {
         if(runner.name.toLowerCase().indexOf(keyword) !== -1
           || runner.city.toLowerCase().indexOf(keyword) !== -1)
           return runner;
       }).filter(x=>!!x);
-      return tungcua;
     }
   }
 

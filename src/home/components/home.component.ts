@@ -32,6 +32,8 @@ export class HomeComponent {
   }
 
   onChangeCountry(newValue): void {
+    //console.log(newValue);
+    this.selected_country = newValue;
     this.runnerListService.fetchRunners(newValue);
   }
 }
