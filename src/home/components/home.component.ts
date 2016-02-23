@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgSelectOption} from 'angular2/common';
 
-import { Http } from 'angular2/http';
 import {NameListService} from '../../shared/services/name-list.service';
 import {RunnerListService} from '../../shared/services/runner-list.service';
 
@@ -10,12 +9,17 @@ import {RunnerListService} from '../../shared/services/runner-list.service';
   moduleId: module.id,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  directives: [FORM_DIRECTIVES, CORE_DIRECTIVES]
+  directives: [FORM_DIRECTIVES, CORE_DIRECTIVES,NgSelectOption]
 })
 
 export class HomeComponent {
   newName: string;
-  constructor(public nameListService: NameListService,public runnerListService: RunnerListService,public http: Http) {}
+  selected_country = '';
+  runners = [];
+  countries = [];
+  constructor(public nameListService: NameListService,public runnerListService: RunnerListService) {
+    this.countries = this.runnerListService.fetchCountries();
+  }
 
   /*
    * @param newname  any text as input.
@@ -27,8 +31,13 @@ export class HomeComponent {
     return false;
   }
 
-  fetchCountries(): boolean {
-    this.runnerListService.fetchCountries(this.http);
+  fetchCountries(): string[]  {
+    this.countries = this.runnerListService.fetchCountries();
+    return this.countries;
   }
 
+  fetchRunners():  Object[] {
+    this.runners = this.runnerListService.fetchRunners(this.selected_country);
+    return this.runners;
+  }
 }

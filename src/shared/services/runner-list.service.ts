@@ -1,3 +1,6 @@
+import {Injectable} from 'angular2/core';
+import {Http,Response} from 'angular2/http';
+
 interface RunnerInfo {
   name: string;
   city: string;
@@ -27,25 +30,44 @@ class Country {
   }
 }
 
+@Injectable()
 export class RunnerListService {
 
-  response: string;
+  countries= [];
+  runners = {};
+  response: any;
 
-  fetchCountries(http): void {
-    this._callApi(http,'http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/');
+  constructor(public http: Http) {}
+
+  fetchCountries(): string[] {
+    if(this.countries.length === 0) {
+      console.log('http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/');
+      this._callApi('http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/')
+        .map((response: Response) => response.json())
+        .subscribe(
+          response => this.countries = response,
+          error => this.response = error.text()
+        );
+    }
+    return this.countries;
   }
 
-  getCountries(): string {
-    return this.response;
+  fetchRunners(country: string): Object[] {
+    if(typeof this.runners[country] === 'undefined') {
+      console.log('http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/' + country);
+      this._callApi('http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/' + country)
+        .map((response: Response) => response.json())
+        .subscribe(
+          response => this.runners[country] = response,
+          error => this.response = error.text()
+        );
+    }
+    console.log(this.runners);
+    console.log(this.runners[country]);
+    return this.runners[country];
   }
 
-  _callApi(http,url) {
-    this.response = null;
-    http.get(url)
-      .subscribe(
-        response => this.response = response.text(),
-        error => this.response = error.text()
-      );
+  _callApi(url) {
+    return this.http.get(url);
   }
-
 }

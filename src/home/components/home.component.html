@@ -8,15 +8,27 @@
   <button type="submit">Add</button>
 </form>
 
-
 <ul>
   <li *ngFor="#name of nameListService.get()">{{name}}</li>
 </ul>
 
-
-<p><a class="btn btn-primary btn-lg" role="button" (click)="fetchCountries()">Get Countries</a></p>
-
 <p>
-  {{runnerListService.getCountries()}}
+  <a (click)="fetchCountries()">Get Runners</a>
 </p>
+<select [(ngModel)]="selected_country">
+  <option> -- Select Country -- </option>
+  <option *ngFor="#country of countries" >{{country}}</option>
+</select>
+
+
+<a (click)="fetchRunners()">Get Runners</a>
+
+<ul>
+  <li *ngFor="#runner of runners">
+    {{runner.city}}|
+    {{runner.name}}|
+    <img src='{{runner.profileImg}}'>|
+    <a href='{{runner.runnersProfile}}'>Link</a>
+  </li>
+</ul>
 
