@@ -4,7 +4,7 @@
   </div>
   <section class="content col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
     <p>
-      <select [(ngModel)]="selected_country" class="form-control" style="width: 100%">
+      <select [(ngModel)]="selected_country" (ngModelChange)="onChangeCountry($event)" class="form-control" style="width: 100%">
         <option> -- Select Country -- </option>
         <option *ngFor="#country of runnerListService.getCountries()" >{{country}}</option>
       </select>
@@ -12,31 +12,40 @@
   </section>
 </div>
 
-<a (click)="fetchRunners()">Get Runners</a>
 <div class='container'>
+  <div class='search-container'>
+    <div class='runner-search col-xs-12 col-sm-10 col-md-6 col-md-offset-3 col-sm-offset-1'>
+      <input class='form-control' [(ngModel)]="keyword"  style="width: 100%">
+      <a (click)="fetchRunners()" class='btn btn-defaul btn-block'>Get Runners</a>
+    </div>
+    <div class='clear clearfix'></div>
+  </div>
   <div class='card-container'>
     <ul class='runner-cards-list'>
-      <li *ngFor="#runner of runnerListService.getRunners(selected_country)" class='runner-card col-xs-4 col-sm-3 col-md-2 col-lg-2'>
+      <li *ngFor="#runner of runnerListService.getRunners(selected_country,keyword)" class='runner-card col-xs-12 col-sm-4 col-md-3 col-lg-3'>
         <div class='card-wrapper'>
-          <div class='image-wrapper'>
-            <div class='image'>
-              <img src='{{runner.profileImg}}'>
-            </div>
-          </div>
-          <div class='runner-info-wrapper'>
-            <div class='runner-info'>
-              <div class='name-wrapper'>
-                <h4 class='name'>
-                  {{runner.name}}
-                </h4>
-              </div>
-              <div class='info-wrapper'>
-                {{runner.city}}|
-                {{runner.name}}|
+          <div class='profile-wrapper'>
+            <div class='image-wrapper'>
+              <div class='image'>
+                <img src='{{runner.profileImg}}'>
               </div>
             </div>
+            <div class='runner-info-wrapper'>
+              <div class='runner-info'>
+                <div class='name-wrapper'>
+                  <h4 class='name'>
+                    {{runner.name}}
+                  </h4>
+                </div>
+                <div class='info-wrapper text-centered'>
+                  {{runner.city}}
+                </div>
+              </div>
+            </div>
           </div>
-          <a href='{{runner.runnersProfile}}'>Link</a>
+          <a target="_blank" href="{{runner.runnersProfile}}" class='btn btn-success btn-block'>
+            View Profile
+          </a>
         </div>
       </li>
     </ul>

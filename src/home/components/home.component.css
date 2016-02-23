@@ -18,7 +18,7 @@ ul {
   background-attachment: fixed;
   background-size: cover;
   background-color: #464646;
-  height: 500px;
+  height: 600px;
   position: relative;
 }
 
@@ -52,7 +52,8 @@ ul {
 .runner-card {
   margin-bottom: 20px;
   position: relative;
-  height: 317px;
+  height: 247px;
+  min-width: 128px;
   float: left;
 }
 
@@ -68,20 +69,29 @@ ul {
   height: 100%;
 }
 
+.runner-card .image-wrapper {
+  background: rgba(174, 174, 174, 0.12);
+}
+
 .runner-card .image {
-  height: 178px;
+  height: 140px;
   position: relative;
+  text-align: center;
 }
 
 .runner-card .image img {
+  border-radius: 100%;
   max-width: 100%;
+  margin-top: 10px;
 }
 
 .runner-info {
   padding-left: 10px;
   padding-right: 10px;
-  padding-top: 10px;
   padding-bottom: 10px;
+}
+.name-wrapper {
+  text-align: center;
 }
 
 .runner-info .name {
@@ -100,4 +110,19 @@ ul {
   vertical-align: middle;
   zoom: 1;
   white-space: normal;
+  border-bottom: 4px !important;
+}
+.profile-wrapper {
+  height: 214px;
+}
+.info-wrapper {
+  font-size: 14px;
+  text-align: center;
+  font-style: italic;
+  max-height: 20px;
+}
+
+.search-container {
+  margin-top: 30px;
+
 }

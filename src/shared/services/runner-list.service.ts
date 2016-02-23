@@ -48,10 +48,21 @@ export class RunnerListService {
     console.log(this.runners[country]);
   }
 
-  getRunners(country): RunnerInfo[] {
-    return this.runners[country]||[];
+  getRunners(country,keyword): RunnerInfo[] {
+    console.log(keyword);
+    keyword = keyword.toLowerCase();
+    var set_runners = this.runners[country]||[];
+    if(keyword.length === 0) {
+      return set_runners;
+    } else {
+      var tungcua = set_runners.map((runner) => {
+        if(runner.name.toLowerCase().indexOf(keyword) !== -1
+          || runner.city.toLowerCase().indexOf(keyword) !== -1)
+          return runner;
+      }).filter(x=>!!x);
+      return tungcua;
+    }
   }
-
 
   _callApi(url) {
     return this.http.get(url);

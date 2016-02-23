@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgSelectOption} from 'angular2/common';
 
-import {NameListService} from '../../shared/services/name-list.service';
 import {RunnerListService} from '../../shared/services/runner-list.service';
 
 @Component({
@@ -15,9 +14,8 @@ import {RunnerListService} from '../../shared/services/runner-list.service';
 export class HomeComponent {
   newName: string;
   selected_country = '';
-  runners = [];
-  countries = [];
-  constructor(public nameListService: NameListService,public runnerListService: RunnerListService) {
+  keyword = '';
+  constructor(public runnerListService: RunnerListService) {
     this.runnerListService.fetchCountries(true);
   }
 
@@ -25,13 +23,15 @@ export class HomeComponent {
    * @param newname  any text as input.
    * @returns return false to prevent default form submit behavior to refresh the page.
    */
-  addName(): boolean {
-    this.nameListService.add(this.newName);
-    this.newName = '';
-    return false;
+  fetchCountries(): void {
+    this.runnerListService.fetchCountries(true);
   }
 
   fetchRunners(): void {
-    this.runnerListService.fetchRunners(this.selected_country);
+    this.runnerListService.fetchRunners(this.selected_country,true);
+  }
+
+  onChangeCountry(newValue): void {
+    this.runnerListService.fetchRunners(newValue);
   }
 }
