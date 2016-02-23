@@ -2,29 +2,20 @@
   Howdy! Here's a list of awesome computer scientists.
   Do you know any others? Add to the list yourself.
 </p>
-
-<form (submit)="addName()">
-  <input [(ngModel)]="newName" placeholder="Awesome Computer Scientist">
-  <button type="submit">Add</button>
-</form>
-
-<ul>
-  <li *ngFor="#name of nameListService.get()">{{name}}</li>
-</ul>
-
 <p>
-  <a (click)="fetchCountries()">Get Runners</a>
+  <a (click)="runnerListService.fetchCountries(true)">Get Runners</a>
 </p>
+
 <select [(ngModel)]="selected_country">
   <option> -- Select Country -- </option>
-  <option *ngFor="#country of countries" >{{country}}</option>
+  <option *ngFor="#country of runnerListService.getCountries()" >{{country}}</option>
 </select>
 
 
 <a (click)="fetchRunners()">Get Runners</a>
 
 <ul>
-  <li *ngFor="#runner of runners">
+  <li *ngFor="#runner of runnerListService.getRunners(selected_country)">
     {{runner.city}}|
     {{runner.name}}|
     <img src='{{runner.profileImg}}'>|

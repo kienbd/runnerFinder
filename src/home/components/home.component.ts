@@ -18,7 +18,7 @@ export class HomeComponent {
   runners = [];
   countries = [];
   constructor(public nameListService: NameListService,public runnerListService: RunnerListService) {
-    this.countries = this.runnerListService.fetchCountries();
+    this.runnerListService.fetchCountries(true);
   }
 
   /*
@@ -31,13 +31,7 @@ export class HomeComponent {
     return false;
   }
 
-  fetchCountries(): string[]  {
-    this.countries = this.runnerListService.fetchCountries();
-    return this.countries;
-  }
-
-  fetchRunners():  Object[] {
-    this.runners = this.runnerListService.fetchRunners(this.selected_country);
-    return this.runners;
+  fetchRunners(): void {
+    this.runnerListService.fetchRunners(this.selected_country);
   }
 }
