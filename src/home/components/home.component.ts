@@ -47,6 +47,7 @@ export class HomeComponent {
     //console.log(newValue);
     console.log(newValue);
     this.selected_country = newValue;
+    this.itemsPerPage = 10;
     this.runnerListService.fetchRunners(newValue);
   }
   onScroll(event) {
