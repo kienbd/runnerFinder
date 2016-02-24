@@ -1,6 +1,6 @@
 # Introduction
 
-An Angular 2 apps to find runner.
+An Angular 2 app to find runner profile.
 
 `RunnerFinder` provides the following features:
 
