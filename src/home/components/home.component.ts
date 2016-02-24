@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgSelectOption} from 'angular2/common';
 import {PaginatePipe, PAGINATION_DIRECTIVES, IPaginationInstance,PaginationService} from 'ng2-pagination';
+import {AnimateScrollTo} from '../../assets/animate-scroll-to';
 
 
 import {RunnerListService} from '../../shared/services/runner-list.service';
@@ -48,9 +49,19 @@ export class HomeComponent {
     console.log(newValue);
     this.selected_country = newValue;
     this.config.itemsPerPage = 10;
+    AnimateScrollTo(window.document.body, 200, 1000);
     this.runnerListService.fetchRunners(newValue);
   }
-  onScroll(event) {
+
+  toTop(): void {
+    AnimateScrollTo(window.document.body, 0, 600);
+  }
+
+  scrollPosition(): number {
+    return window.document.body.scrollTop;
+  }
+
+  onScroll(event): void {
     if (event.target.body.scrollTop + window.innerHeight > event.target.body.scrollHeight - 100) {
       console.log('next page');
       this.config.itemsPerPage += this.step;

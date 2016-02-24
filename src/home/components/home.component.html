@@ -80,4 +80,8 @@
     <div class='clear clear-fix'></div>
   </div>
 </div>
-
+<a *ngIf='scrollPosition() > 200' (click)="toTop()" class="scroll-top" style="display: inline;">
+  <span>
+    <i class="fa fa-angle-double-up"></i>
+  </span>
+</a>

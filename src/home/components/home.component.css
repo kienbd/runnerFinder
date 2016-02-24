@@ -232,6 +232,7 @@ select {
 
 .container {
   padding-top: 20px;
+  min-height: 400px;
 }
 
 .conditions i {
@@ -266,4 +267,24 @@ select {
   h1.slogan {
     padding-top: 110px;
   }
+}
+
+.scroll-top {
+  opacity: 0.5;
+  position: fixed;
+  right: 10px;
+  bottom: 20px;
+  cursor: pointer;
+}
+
+.scroll-top:hover {
+  opacity: 1;
+}
+
+.scroll-top span {
+  padding: 10px 20px;
+  font-size: 30px;
+  background: #5ba205;
+  border-radius: 10px;
+  color: white;
 }
