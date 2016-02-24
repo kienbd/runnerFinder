@@ -14,6 +14,8 @@ export class RunnerListService {
 
   countries= [];
   runners = {};
+  load_countries_complete = false;
+  load_runners_complete = true;
   response: any;
 
   constructor(public http: Http) {}
@@ -21,10 +23,14 @@ export class RunnerListService {
   fetchCountries(force=false): void {
     if(force) {
       console.log('http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/');
+      this.load_countries_complete = false;
       this._callApi('http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/')
         .map((response: Response) => response.json())
         .subscribe(
-          response => this.countries = response,
+          response => {
+            this.countries = response;
+            this.load_countries_complete = true;
+          },
           error => this.response = error.text()
         );
     }
@@ -35,15 +41,27 @@ export class RunnerListService {
     return this.countries;
   }
 
+  isGettingCountriesComplete(): boolean {
+    return this.load_countries_complete;
+  }
+
+  isGettingRunnersComplete(): boolean {
+    return this.load_runners_complete;
+  }
+
   fetchRunners(country: string,force= false): void {
     if(country.length === 0)
       return;
     if(force||typeof this.runners[country] === 'undefined') {
       console.log('http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/' + country);
+      this.load_runners_complete = false;
       this._callApi('http://crossorigin.me/https://api-test.mynextrun.com/site/v1/profile-stats/countries/' + country)
         .map((response: Response) => response.json())
         .subscribe(
-          response => this.runners[country] = response,
+          response => {
+            this.runners[country] = response;
+            this.load_runners_complete = true;
+          },
           error => this.response = error.text()
         );
     }
