@@ -35,3 +35,8 @@ npm run serve.prod
 
 _Does not rely on any global dependencies._
 
+
+# Acknowledgement
+
+This project is built on [angular2-seed](https://github.com/mgechev/angular2-seed)
+
