@@ -1,14 +1,83 @@
-<p>
-  Howdy! Here's a list of awesome computer scientists.
-  Do you know any others? Add to the list yourself.
-</p>
+<div class="hero">
+  <div class="slogan-container" >
+    <h1 class=" slogan"> By <span class='primary-color'>Runners</span> <br> <span class='primary-color'>For</span> Runners</h1>
+    <h4 class='sub-slogan'> Find runners profile in over 160 countries </h4>
+  </div>
+  <section class="hero-content-footer">
+    <div class='col-sm-12'>
+      <div class=''>
+        <div class='filters-container'>
+          <div class='col-sm-4 text-center filter-wrapper'>
+            <label class='label-select'>
+              <div class='lb-select lb-select-large'>
+                <select (change)="onChangeCountry($event.target.value)" class="country-select">
+                  <option selected="selected" value=''> - Select a Country - </option>
+                  <option *ngFor="#country of runnerListService.getCountries()" >{{country}}</option>
+                </select>
+              </div>
+            </label>
+          </div>
+          <div class='col-sm-7'>
+            <label class="label-select filter-wrapper" style="width: 100%;">
+              <input class='lb-input lb-input-large' [(ngModel)]="keyword" style="width: 100%" placeholder="Filter runners by name or city ... in {{selected_country}}">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
-<form (submit)="addName()">
-  <input [(ngModel)]="newName" placeholder="Awesome Computer Scientist">
-  <button type="submit">Add</button>
-</form>
+<div class='container'>
+  <div class='conditions'>
+    <div *ngIf= "!runnerListService.isGettingCountriesComplete() ">
+      <i class="fa fa-spinner fa-spin primary-color"></i>
+      Loading Countries
+    </div>
+    <div *ngIf= "!runnerListService.isGettingRunnersComplete()">
+      <i class="fa fa-spinner fa-spin primary-color"></i>
+      Loading Runners in {{selected_country}}
+    </div>
+    <div *ngIf= "selected_country.length > 0 && runnerListService.isGettingRunnersComplete() &&
+      runnerListService.getRunners(selected_country,keyword).length == 0">
+      No data in {{selected_country}}
+    </div>
+  </div>
+  <div class='card-container' *ngIf="runnerListService.getRunners(selected_country,keyword).length > 0" >
+    <h3 class='announcer'> There are <span class='primary-color'>{{runnerListService.getRunners(selected_country,keyword).length }} </span> runners in {{selected_country}}
+      <span *ngIf="keyword.length > 0"> match "{{keyword}}" </span>
+    </h3>
+    <ul class='runner-cards-list' (window:scroll)="onScroll($event)">
+      <li *ngFor="#runner of runnerListService.getRunners(selected_country,keyword) |paginate: config"
+        class='runner-card col-xs-6 col-sm-4 col-md-3 col-lg-3'>
+        <div class='card-wrapper'>
+          <div class='profile-wrapper'>
+            <div class='image-wrapper'>
+              <div class='image'>
+                <img src='{{runner.profileImg}}'>
+              </div>
+              <div class="flow-num">{{runner.eventCount}}</div>
+            </div>
+            <div class='runner-info-wrapper'>
+              <div class='runner-info'>
+                <div class='name-wrapper'>
+                  <h4 class='name'>
+                    {{runner.name}}
+                  </h4>
+                </div>
+                <div class='info-wrapper text-centered'>
+                  {{runner.city}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <a target="_blank" href="{{runner.runnersProfile}}" class='btn btn-success btn-block'>
+            View Profile
+          </a>
+        </div>
+      </li>
+    </ul>
+    <div class='clear clear-fix'></div>
+  </div>
+</div>
 
-
-<ul>
-  <li *ngFor="#name of nameListService.get()">{{name}}</li>
-</ul>

@@ -10,7 +10,7 @@ html, body, div {
 
 /* Set up a default font and some padding to provide breathing room */
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -34,26 +34,7 @@ li {
   margin-top: 4px;
 }
 
-input {
-  border: 1px solid #106CC8;
-  font-size: 14px;
-  height: 40px;
-  outline: none;
-  padding: 8px;
+.primary-color {
+  color: #5BA205;
 }
 
-button {
-  background-color: #106CC8;
-  border-style: none;
-  color: rgba(255,255,255,0.87);
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  height: 40px;
-  padding: 8px 18px;
-  text-decoration: none;
-}
-
-button:hover {
-  background-color: #28739E;
-}

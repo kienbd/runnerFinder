@@ -1,22 +1,32 @@
 :host {
-  border-color: #E1E1E1;
+  border-color: rgba(225, 225, 225, 0.08);
   border-style: solid;
   border-width: 0 0 1px;
   display: block;
   height: 48px;
   padding: 0 16px;
+  position: absolute;
+  z-index: 1;
+  top: 7px;
+  width: 100%;
+  padding-left: 30px;
+  font-weight: 700;
 }
 
 nav a {
-  color: #8F8F8F;
-  font-size: 14px;
-  font-weight: 500;
+  color: white;
   line-height: 48px;
   margin-right: 20px;
   text-decoration: none;
   vertical-align: middle;
+  padding: 15px 15px;
+  font-size: 24px;
+  text-decoration: none;
+  outline: 0;
 }
 
-nav a.router-link-active {
-  color: #106CC8;
+@media screen and (max-width: 480px) {
+  :host {
+    padding-left: 15px;
+  }
 }
