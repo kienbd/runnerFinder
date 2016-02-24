@@ -11,7 +11,7 @@
             <label class='label-select'>
               <div class='lb-select lb-select-large'>
                 <select (change)="onChangeCountry($event.target.value)" class="country-select">
-                  <option selected="selected" val=''> - Select a Country - </option>
+                  <option selected="selected" value=''> - Select a Country - </option>
                   <option *ngFor="#country of runnerListService.getCountries()" >{{country}}</option>
                 </select>
               </div>
@@ -31,11 +31,11 @@
 <div class='container'>
   <div class='conditions'>
     <div *ngIf= "!runnerListService.isGettingCountriesComplete() ">
-      <i class="fa fa-spinner fa-spin"></i>
+      <i class="fa fa-spinner fa-spin primary-color"></i>
       Loading Countries
     </div>
     <div *ngIf= "!runnerListService.isGettingRunnersComplete()">
-      <i class="fa fa-spinner fa-spin"></i>
+      <i class="fa fa-spinner fa-spin primary-color"></i>
       Loading Runners in {{selected_country}}
     </div>
     <div *ngIf= "selected_country.length > 0 && runnerListService.isGettingRunnersComplete() &&
