@@ -30,6 +30,11 @@ ul {
   padding-top: 10px;
 }
 
+.slogan-container {
+  padding: 0 10px;
+  padding-left: 100px;
+}
+
 h1.slogan {
   color: white;
   margin-top: 0px;
@@ -239,13 +244,25 @@ select {
   border-bottom: 1px solid #aeaeae;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 700px) {
+  .slogan-container {
+    padding-left: 45px;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .slogan-container {
+    padding-left: 30px;
+  }
   h1.slogan {
     padding-top: 120px;
   }
 }
 
 @media screen and (max-width: 410px) {
+  .slogan-container {
+    padding-left: 30px;
+  }
   h1.slogan {
     padding-top: 110px;
   }

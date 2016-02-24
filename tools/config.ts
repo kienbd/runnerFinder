@@ -100,7 +100,8 @@ const SYSTEM_CONFIG_DEV = {
     [BOOTSTRAP_MODULE]: `${APP_BASE}${BOOTSTRAP_MODULE}`,
     'angular2/*': `${APP_BASE}angular2/*`,
     'rxjs/*': `${APP_BASE}rxjs/*`,
-    '*': `${APP_BASE}node_modules/*`
+    'moment': `${APP_BASE}node_modules/moment/moment`,
+    '*': `${APP_BASE}node_modules/*`,
   },
   packages: {
     angular2: { defaultExtension: false },
