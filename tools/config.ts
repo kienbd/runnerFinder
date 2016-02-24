@@ -80,11 +80,13 @@ export const PROD_NPM_DEPENDENCIES: InjectableDependency[] = normalizeDependenci
   { src: 'es6-shim/es6-shim.min.js', inject: 'shims' },
   { src: 'systemjs/dist/system.js', inject: 'shims' },
   { src: 'angular2/bundles/angular2-polyfills.min.js', inject: 'libs' },
+  { src: `bootstrap/dist/css/bootstrap.css`, inject: true, dest: CSS_DEST },
+  { src: `font-awesome/css/font-awesome.min.css`, inject: true, dest: CSS_DEST }
 ]);
 
 // Declare local files that needs to be injected
 export const APP_ASSETS: InjectableDependency[] = [
-  { src: `${ASSETS_SRC}/main.css`, inject: true, dest: CSS_DEST }
+  { src: `${ASSETS_SRC}/main.css`, inject: true, dest: CSS_DEST },
 ];
 
 
