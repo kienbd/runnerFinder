@@ -79,7 +79,7 @@ export const PROD_NPM_DEPENDENCIES: InjectableDependency[] = normalizeDependenci
   { src: 'reflect-metadata/Reflect.js', inject: 'shims' },
   { src: 'es6-shim/es6-shim.min.js', inject: 'shims' },
   { src: 'systemjs/dist/system.js', inject: 'shims' },
-  { src: 'angular2/bundles/angular2-polyfills.min.js', inject: 'libs' }
+  { src: 'angular2/bundles/angular2-polyfills.min.js', inject: 'libs' },
 ]);
 
 // Declare local files that needs to be injected
@@ -100,7 +100,6 @@ const SYSTEM_CONFIG_DEV = {
     [BOOTSTRAP_MODULE]: `${APP_BASE}${BOOTSTRAP_MODULE}`,
     'angular2/*': `${APP_BASE}angular2/*`,
     'rxjs/*': `${APP_BASE}rxjs/*`,
-    'moment': `${APP_BASE}node_modules/moment/moment`,
     'ng2-pagination': `${APP_BASE}node_modules/ng2-pagination/dist/ng2-pagination`,
     '*': `${APP_BASE}node_modules/*`,
   },
@@ -116,7 +115,8 @@ export const SYSTEM_BUILDER_CONFIG = {
   defaultJSExtensions: true,
   paths: {
     [`${TMP_DIR}/*`]: `${TMP_DIR}/*`,
-    '*': 'node_modules/*'
+    '*': 'node_modules/*',
+    'ng2-pagination': `node_modules/ng2-pagination/dist/ng2-pagination.js`,
   }
 };
 

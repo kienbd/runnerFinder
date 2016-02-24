@@ -19,12 +19,12 @@ export class HomeComponent {
   newName: string;
   selected_country = '';
   keyword = '';
+  step = 10;
 
   public config:IPaginationInstance = {
     id: 'custom',
     itemsPerPage: 10,
     currentPage: 1,
-    step: 10
   };
 
   constructor(public runnerListService: RunnerListService) {
@@ -52,7 +52,7 @@ export class HomeComponent {
   onScroll(event) {
     if (event.target.body.scrollTop + window.innerHeight > event.target.body.scrollHeight - 100) {
       console.log('next page');
-      this.config.itemsPerPage += this.config.step;
+      this.config.itemsPerPage += this.step;
     }
   }
 }
