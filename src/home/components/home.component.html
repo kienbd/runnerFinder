@@ -43,11 +43,11 @@
       No data in {{selected_country}}
     </div>
   </div>
-  <div class='card-container'>
-    <ul *ngIf="runnerListService.getRunners(selected_country,keyword).length > 0" class='runner-cards-list'>
-      <h3 class='announcer'> There are <span class='primary-color'>{{runnerListService.getRunners(selected_country,keyword).length }} </span> runners in {{selected_country}}
-        <span *ngIf="keyword.length > 0"> match "{{keyword}}" </span>
-      </h3>
+  <div class='card-container' *ngIf="runnerListService.getRunners(selected_country,keyword).length > 0" >
+    <h3 class='announcer'> There are <span class='primary-color'>{{runnerListService.getRunners(selected_country,keyword).length }} </span> runners in {{selected_country}}
+      <span *ngIf="keyword.length > 0"> match "{{keyword}}" </span>
+    </h3>
+    <ul class='runner-cards-list' (window:scroll)="onScroll($event)">
       <li *ngFor="#runner of runnerListService.getRunners(selected_country,keyword)" class='runner-card col-xs-6 col-sm-4 col-md-3 col-lg-3'>
         <div class='card-wrapper'>
           <div class='profile-wrapper'>
