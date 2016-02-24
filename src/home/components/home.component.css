@@ -47,8 +47,24 @@ h4.sub-slogan {
   font-size: 19px;
 }
 
+.hero-content-footer {
+  background-color: #000;
+  background-color: rgba(0,0,0,0.6);
+  bottom: 0;
+  left: 0;
+  padding-bottom: 20px;
+  padding-top: 30px;
+  position: absolute;
+  right: 0;
+}
+
+.filters-container {
+  position: relative;
+}
+
+
 .card-container {
-  min-height: 600px;
+  min-height: 400px;
 }
 
 .runner-cards-list {
@@ -84,6 +100,19 @@ h4.sub-slogan {
 
 .runner-card .image-wrapper {
   background: rgba(174, 174, 174, 0.12);
+  position: relative;
+}
+
+.flow-num {
+  display: inline-block;
+  position: absolute;
+  right: 5px;
+  padding: 4px 12px;
+  border-radius: 100%;
+  bottom: -13px;
+  /*background: #5CB85C;*/
+  background: #F17022;
+  color: white;
 }
 
 .runner-card .image {
@@ -125,6 +154,8 @@ h4.sub-slogan {
   white-space: normal;
   border-bottom: 4px !important;
 }
+
+
 .profile-wrapper {
   height: 214px;
 }
@@ -140,6 +171,72 @@ h4.sub-slogan {
 
 }
 .country-select {
-  width: 190px;
+  width: 174px;
   margin: 0 auto;
+}
+
+.country-select-container {
+  display: inlVdV
+}
+
+
+.label-select {
+  margin: 0 -1px 0 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  vertical-align: middle;
+  width: auto;
+}
+
+.lb-select {
+  display: block;
+  height: 44px;
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.lb-select-large select{
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+select {
+  -webkit-appearance: none;
+  background-color: #fff;
+  color: #565a5c;
+  padding-left: 10px;
+}
+
+.lb-input {
+  display: block;
+  height: 44px;
+}
+
+.lb-input-large {
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+}
+
+.filter-wrapper:first-child {
+  margin-bottom: 10px;
+}
+
+.container {
+  padding-top: 40px;
+}
+
+@media screen and (max-width: 480px) {
+  h1.slogan {
+    padding-top: 120px;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  h1.slogan {
+    padding-top: 110px;
+  }
 }

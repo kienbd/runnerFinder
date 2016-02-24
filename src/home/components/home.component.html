@@ -3,36 +3,42 @@
     <h1 class=" slogan"> By <span class='primary-color'>Runners</span> <br> <span class='primary-color'>For</span> Runners</h1>
     <h4 class='sub-slogan'> Find runners profile in over 160 countries </h4>
   </div>
-  <section class="hero-content">
-    <p>
-      <!-- bind model
-        <select [(ngModel)]="selected_country" (ngModelChange)="onChangeCountry($event)" class="form-control" style="width: 100%">
-      <-->
-      <select (change)="onChangeCountry($event.target.value)" class="form-control country-select">
-        <option selected="selected" val=''> ---- Select a Country ---- </option>
-        <option *ngFor="#country of runnerListService.getCountries()" >{{country}}</option>
-      </select>
-    </p>
+  <section class="hero-content-footer">
+    <div class='col-sm-12'>
+      <div class=''>
+        <div class='filters-container'>
+          <div class='col-sm-4 text-center filter-wrapper'>
+            <label class='label-select'>
+              <div class='lb-select lb-select-large'>
+                <select (change)="onChangeCountry($event.target.value)" class="country-select">
+                  <option selected="selected" val=''> - Select a Country - </option>
+                  <option *ngFor="#country of runnerListService.getCountries()" >{{country}}</option>
+                </select>
+              </div>
+            </label>
+          </div>
+          <div class='col-sm-7'>
+            <label class="label-select filter-wrapper" style="width: 100%;">
+              <input class='lb-input lb-input-large' [(ngModel)]="keyword" style="width: 100%" placeholder="Filter runners by name or city ...">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 
 <div class='container'>
-  <div class='search-container'>
-    <div class='runner-search col-xs-12 col-sm-10 col-md-6 col-md-offset-3 col-sm-offset-1'>
-      <input class='form-control' [(ngModel)]="keyword"  style="width: 100%">
-      <a (click)="fetchRunners()" class='btn btn-defaul btn-block'>Get Runners</a>
-    </div>
-    <div class='clear clearfix'></div>
-  </div>
   <div class='card-container'>
     <ul class='runner-cards-list'>
-      <li *ngFor="#runner of runnerListService.getRunners(selected_country,keyword)" class='runner-card col-xs-12 col-sm-4 col-md-3 col-lg-3'>
+      <li *ngFor="#runner of runnerListService.getRunners(selected_country,keyword)" class='runner-card col-xs-6 col-sm-4 col-md-3 col-lg-3'>
         <div class='card-wrapper'>
           <div class='profile-wrapper'>
             <div class='image-wrapper'>
               <div class='image'>
                 <img src='{{runner.profileImg}}'>
               </div>
+              <div class="flow-num">{{runner.eventCount}}</div>
             </div>
             <div class='runner-info-wrapper'>
               <div class='runner-info'>

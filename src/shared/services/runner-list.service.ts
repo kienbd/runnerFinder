@@ -31,7 +31,7 @@ export class RunnerListService {
   }
 
   getCountries(): string[] {
-    console.log(this.countries);
+    //console.log(this.countries);
     return this.countries;
   }
 
