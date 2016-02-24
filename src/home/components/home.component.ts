@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgSelectOption} from 'angular2/common';
+import {PaginatePipe, PAGINATION_DIRECTIVES, IPaginationInstance,PaginationService} from 'ng2-pagination';
 
 
 import {RunnerListService} from '../../shared/services/runner-list.service';
@@ -9,14 +10,23 @@ import {RunnerListService} from '../../shared/services/runner-list.service';
   moduleId: module.id,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  directives: [FORM_DIRECTIVES, CORE_DIRECTIVES,NgSelectOption]
+  directives: [FORM_DIRECTIVES, CORE_DIRECTIVES,NgSelectOption,PAGINATION_DIRECTIVES],
+  pipes: [PaginatePipe],
+  providers: [PaginationService]
 })
 
 export class HomeComponent {
   newName: string;
   selected_country = '';
   keyword = '';
-  currentPage:number = 1;
+
+  public config:IPaginationInstance = {
+    id: 'custom',
+    itemsPerPage: 10,
+    currentPage: 1,
+    step: 10
+  };
+
   constructor(public runnerListService: RunnerListService) {
     this.runnerListService.fetchCountries(true);
   }
@@ -41,6 +51,7 @@ export class HomeComponent {
   onScroll(event) {
     if (event.target.body.scrollTop + window.innerHeight > event.target.body.scrollHeight - 100) {
       console.log('next page');
+      this.config.itemsPerPage += this.config.step;
     }
   }
 }

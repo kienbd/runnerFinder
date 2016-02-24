@@ -36,7 +36,7 @@
     </div>
     <div *ngIf= "!runnerListService.isGettingRunnersComplete()">
       <i class="fa fa-spinner fa-spin"></i>
-      Loading Runners
+      Loading Runners in {{selected_country}}
     </div>
     <div *ngIf= "selected_country.length > 0 && runnerListService.isGettingRunnersComplete() &&
       runnerListService.getRunners(selected_country,keyword).length == 0">
@@ -48,7 +48,8 @@
       <span *ngIf="keyword.length > 0"> match "{{keyword}}" </span>
     </h3>
     <ul class='runner-cards-list' (window:scroll)="onScroll($event)">
-      <li *ngFor="#runner of runnerListService.getRunners(selected_country,keyword)" class='runner-card col-xs-6 col-sm-4 col-md-3 col-lg-3'>
+      <li *ngFor="#runner of runnerListService.getRunners(selected_country,keyword) |paginate: config"
+        class='runner-card col-xs-6 col-sm-4 col-md-3 col-lg-3'>
         <div class='card-wrapper'>
           <div class='profile-wrapper'>
             <div class='image-wrapper'>
