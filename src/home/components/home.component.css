@@ -226,7 +226,17 @@ select {
 }
 
 .container {
-  padding-top: 40px;
+  padding-top: 20px;
+}
+
+.conditions i {
+  font-size: 20px;
+}
+
+.announcer {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-bottom: 1px solid #aeaeae;
 }
 
 @media screen and (max-width: 480px) {

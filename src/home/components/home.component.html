@@ -29,18 +29,25 @@
 </div>
 
 <div class='container'>
-  <div *ngIf= "!runnerListService.isGettingCountriesComplete() ">
-    Loading Countries
-  </div>
-  <div *ngIf= "!runnerListService.isGettingRunnersComplete()">
-    Loading Runners
-  </div>
-  <div *ngIf= "selected_country.length > 0 && runnerListService.isGettingRunnersComplete() &&
-    runnerListService.getRunners(selected_country,keyword).length == 0">
-    No data
+  <div class='conditions'>
+    <div *ngIf= "!runnerListService.isGettingCountriesComplete() ">
+      <i class="fa fa-spinner fa-spin"></i>
+      Loading Countries
+    </div>
+    <div *ngIf= "!runnerListService.isGettingRunnersComplete()">
+      <i class="fa fa-spinner fa-spin"></i>
+      Loading Runners
+    </div>
+    <div *ngIf= "selected_country.length > 0 && runnerListService.isGettingRunnersComplete() &&
+      runnerListService.getRunners(selected_country,keyword).length == 0">
+      No data in {{selected_country}}
+    </div>
   </div>
   <div class='card-container'>
-    <ul class='runner-cards-list'>
+    <ul *ngIf="runnerListService.getRunners(selected_country,keyword).length > 0" class='runner-cards-list'>
+      <h3 class='announcer'> There are <span class='primary-color'>{{runnerListService.getRunners(selected_country,keyword).length }} </span> runners in {{selected_country}}
+        <span *ngIf="keyword.length > 0"> match "{{keyword}}" </span>
+      </h3>
       <li *ngFor="#runner of runnerListService.getRunners(selected_country,keyword)" class='runner-card col-xs-6 col-sm-4 col-md-3 col-lg-3'>
         <div class='card-wrapper'>
           <div class='profile-wrapper'>

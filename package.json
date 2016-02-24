@@ -43,6 +43,7 @@
     "event-stream": "^3.3.2",
     "express": "~4.13.1",
     "extend": "^3.0.0",
+    "font-awesome": "^4.5.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.5.2",
     "gulp-cssnano": "^2.0.0",
