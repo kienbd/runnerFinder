@@ -12,26 +12,39 @@ ul {
 }
 
 .hero {
-  background-image: url(http://i.imgsafe.org/9866542.jpg);
-  background-position: center center;
+  /*
+  background-image: url(http://www.ihdimages.com/wp-content/uploads/2014/12/animals_running_background_wallpaper.jpg);
+  background-image: url(http://i.imgur.com/gX9BUEO.jpg);
+  background-image: url(http://thebestrunningshoes.info/wp-content/uploads/2015/07/Top-5-Best-Running-Shoes-for-Women-in-2015.jpg);
+  */
+  background-image: url(http://i.imgur.com/q0XtuFX.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
   background-color: #464646;
   height: 600px;
   position: relative;
+  background-size: cover;
 }
 
-.hero .content {
+.hero .hero-content {
   padding-top: 10px;
 }
-.slogan {
+
+h1.slogan {
   color: white;
   margin-top: 0px;
   display: inline-block;
-  padding: 80px 50px 4px;
+  padding-top: 200px;
+  font-size: 60px;
+  font-weight: 700;
+  text-transform: uppercase;
   box-shadow: 0px 1px #aeaeae;
-
+}
+h4.sub-slogan {
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+  font-size: 19px;
 }
 
 .card-container {
@@ -125,4 +138,8 @@ ul {
 .search-container {
   margin-top: 30px;
 
+}
+.country-select {
+  width: 190px;
+  margin: 0 auto;
 }
